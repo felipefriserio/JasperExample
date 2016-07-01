@@ -2,12 +2,12 @@
  * 
  */
 
-function geraRelatorio(){
+function geraRelatorio(action){
 	var form = document.createElement("form");
 	form.method = "GET";
 	form.action = action;
 
-	form.appendChild(createInput("codUnidadeDesc", $('#nome').text()));
+	form.appendChild(createInput("nome", $('#nome').text()));
 		 
 	document.body.appendChild(form);
     form.submit();

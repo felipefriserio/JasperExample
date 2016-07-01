@@ -14,8 +14,8 @@
 		    <label for="usu">Usuario</label>
 		    <input type="text" class="" id="usu" placeholder="Digite seu nome">
 		  </div>
-		  <input class="btn btn-default" type="button" value="Input" onclick="gerarPDF()">
-		  <input class="btn btn-default" type="button" value="Input" onclick="gerarExcel()">
+		  <input class="btn btn-default" type="button" value="Input" onclick="gerarPDF('GerarPDF')">
+		  <input class="btn btn-default" type="button" value="Input" onclick="gerarExcel('GerarExcel')">
 		</form>
 		
 	</body>

@@ -46,7 +46,7 @@ public class Usuario implements Jasper {
 
 	@Override
 	public InputStream getJRXML() {
-		return context.getResourceAsStream("/reports/usuario.jrxml");
+		return context.getResourceAsStream("/reports/Usuario.jrxml");
 	}
 
 	@Override
