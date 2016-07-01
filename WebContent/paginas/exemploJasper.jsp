@@ -5,19 +5,22 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		
 		<title>Exemplo Jasper</title>
 	</head>
 	<body>
 	
 		<form>
 		  <div class="">
-		    <label for="usu">Usuario</label>
-		    <input type="text" class="" id="usu" placeholder="Digite seu nome">
+		    <label for="nome">nome</label>
+		    <input type="text" class="" id="nome" placeholder="Digite seu nome">
 		  </div>
-		  <input class="btn btn-default" type="button" value="Input" onclick="gerarPDF('GerarPDF')">
-		  <input class="btn btn-default" type="button" value="Input" onclick="gerarExcel('GerarExcel')">
+		  <input class="btn btn-default" type="button" value="PDF" onclick="geraRelatorio('GerarPDF')">
+		  <input class="btn btn-default" type="button" value="EXCEL" onclick="geraRelatorio('GerarExcel')">
 		</form>
 		
 	</body>
 	
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/jasper.js"></script>
 </html>
