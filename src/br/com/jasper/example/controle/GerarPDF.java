@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.jasper.example.modelo.Usuario;
+import br.com.jasper.example.interfaces.Jasper;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -23,35 +23,41 @@ import net.sf.jasperreports.engine.xml.JRXmlLoader;
 public class GerarPDF extends HttpServlet {
 	private static final long serialVersionUID = 2422530570127876544L;
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request,response);
+	}
+	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String classeRelatorio = request.getParameter("relatorio");
 			
-			/*Class<?> classe = Class.forName(Parametros.PACKAGE_RELATORIO + classeRelatorio);
-			Relatorio relatorio = (Relatorio) classe.newInstance();
-			relatorio.setUp(request);*/
+			Class<?> classe = Class.forName("br.com.jasper.example.modelo.Usuario");
+			Jasper jasper = (Jasper) classe.newInstance();
+			jasper.setUp(request);
 			
-			Usuario usuario = new Usuario();
-			usuario.setUp(request);
+			/*Usuario usuario = new Usuario();
+			usuario.setUp(request);*/
 			
-			JasperDesign design = JRXmlLoader.load(usuario.getJRXML());
+			JasperDesign design = JRXmlLoader.load(jasper.getJRXML());
 			JasperReport report = JasperCompileManager.compileReport(design);
-			JasperPrint print = JasperFillManager.fillReport(report, usuario.getParametros(), usuario.getDataSource());
+			JasperPrint print = JasperFillManager.fillReport(report, jasper.getParametros(), jasper.getDataSource());
 			ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
 			JasperExportManager.exportReportToPdfStream(print, byteArray);
 			
 			response.setContentLength(byteArray.size());
 			response.setContentType("application/pdf");
-			response.setHeader("Content-Disposition", "attachment; filename=\"" + usuario.getNomeArquivo() + ".pdf\"");
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + jasper.getNomeArquivo() + ".pdf\"");
 			
 			ServletOutputStream outputStream = response.getOutputStream();
 			byteArray.writeTo(outputStream);
 			outputStream.flush();
 			
+			
+			System.out.println("AHSUDEHAUESHAO");
+			
 		} catch (Exception e) {
-			e.printStackTrace();
+ 			e.printStackTrace();
 		}
 	}
-	
 }

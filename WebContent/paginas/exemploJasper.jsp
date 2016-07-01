@@ -10,13 +10,15 @@
 	</head>
 	<body>
 	
-		<form>
+		<form action="../GerarPDF">
 		  <div class="">
 		    <label for="nome">nome</label>
-		    <input type="text" class="" id="nome" placeholder="Digite seu nome">
+		    <input type="text" class="" name="nome" id="nome" placeholder="Digite seu nome">
 		  </div>
-		  <input class="btn btn-default" type="button" value="PDF" onclick="geraRelatorio('GerarPDF')">
-		  <input class="btn btn-default" type="button" value="EXCEL" onclick="geraRelatorio('GerarExcel')">
+<!-- 		  <input class="btn btn-default" type="button" value="PDF" onclick="geraRelatorio('GerarPDF')">
+		  <input class="btn btn-default" type="button" value="EXCEL" onclick="geraRelatorio('GerarExcel')"> -->
+		  
+		  <input class="btn btn-default" type="submit" value="pdf">
 		</form>
 		
 	</body>

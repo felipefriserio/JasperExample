@@ -17,12 +17,12 @@ import net.sf.jasperreports.engine.JRException;
 
 public class Usuario implements Jasper {
 	private ServletContext context;
-	private HttpServletRequest request;
-
+	private String nome;
+		
 	@Override
 	public void setUp(HttpServletRequest request) {
-		this.request = request;
 		this.context = request.getSession().getServletContext();
+		this.nome = request.getParameter("nome");
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class Usuario implements Jasper {
 		LocalDate data = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM uuuu");
 		
-		parametros.put("nome", getParametro("nome"));
+		parametros.put("nome", this.nome);
 		parametros.put("data", formatter.format(data).toString());
 		
 		return parametros;
@@ -69,7 +69,7 @@ public class Usuario implements Jasper {
 		return relatorioParam;
 	}*/
 	
-	private String getParametro(String parameter) {
+/*	private String getParametro(String parameter) {
 		String value = request.getParameter(parameter);
 
 		try {
@@ -79,5 +79,5 @@ public class Usuario implements Jasper {
 		}
 
 		return value;
-	}
+	}*/
 }
