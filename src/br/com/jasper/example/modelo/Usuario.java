@@ -2,7 +2,6 @@ package br.com.jasper.example.modelo;
 
 import java.io.InputStream;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +20,7 @@ public class Usuario implements Jasper {
 		
 	@Override
 	public void setUp(HttpServletRequest request) {
-		this.context = request.getSession().getServletContext();
+		this.context =  request.getSession().getServletContext();
 		this.nome = request.getParameter("nome");
 	}
 

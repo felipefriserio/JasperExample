@@ -3,6 +3,7 @@ package br.com.jasper.example.controle;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.jasper.example.interfaces.Jasper;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -18,10 +18,14 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import br.com.jasper.example.interfaces.Jasper;
 
 @WebServlet("/GerarPDF")
 public class GerarPDF extends HttpServlet {
-	private static final long serialVersionUID = 2422530570127876544L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request,response);
@@ -36,9 +40,6 @@ public class GerarPDF extends HttpServlet {
 			Jasper jasper = (Jasper) classe.newInstance();
 			jasper.setUp(request);
 			
-			/*Usuario usuario = new Usuario();
-			usuario.setUp(request);*/
-			
 			JasperDesign design = JRXmlLoader.load(jasper.getJRXML());
 			JasperReport report = JasperCompileManager.compileReport(design);
 			JasperPrint print = JasperFillManager.fillReport(report, jasper.getParametros(), jasper.getDataSource());
@@ -52,7 +53,6 @@ public class GerarPDF extends HttpServlet {
 			ServletOutputStream outputStream = response.getOutputStream();
 			byteArray.writeTo(outputStream);
 			outputStream.flush();
-			
 			
 			System.out.println("AHSUDEHAUESHAO");
 			
