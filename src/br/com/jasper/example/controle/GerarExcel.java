@@ -50,6 +50,11 @@ public class GerarExcel extends HttpServlet {
 			response.setHeader("Content-Disposition", "attachment;filename=" + usuario.getNomeArquivo() + ".xls");
 
 			jasperPrint.setProperty("net.sf.jasperreports.export.xls.ignore.graphics", "true");
+			//CONFIGS PARA MOSTRAR O CABECALHO
+			jasperPrint.setProperty("net.sf.jasperreports.export.xls.exclude.origin.band.1", "");
+			jasperPrint.setProperty("net.sf.jasperreports.export.xls.exclude.origin.band.2", "");
+			jasperPrint.setProperty("net.sf.jasperreports.export.xls.exclude.origin.band.3", "");
+			jasperPrint.setProperty("net.sf.jasperreports.export.xls.exclude.origin.band.4", "");
 
 			OutputStream output = response.getOutputStream();
 
